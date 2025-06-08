@@ -203,7 +203,7 @@ HPRSTATN, jd_tt, R_ITRF, R_ECI, V_ECI, TBASE=TBASE,USE_EOP=USE_EOP,/jpl, $
 ;; position and velocity of geocenter w.r.t barycenter
 jplfile = find_with_def('JPLEPH.405','ASTRO_DATA')
 if jplfile EQ '' then message,'ERROR - Cannot find JPL ephemeris file' 
-JPLEPHREAD,jplfile,pinfo,pdata,[long(jdtdb[0])-1,long(jdtdb[ntimes-1])+1]+tbase
+JPLEPHREAD,jplfile,pinfo,pdata,[long(min(jdtdb))-1,long(max(jdtdb))+1]+tbase
 JPLEPHINTERP, pinfo, pdata, jdtdb, x,y,z,vx,vy,vz, /EARTH,/VELOCITY, $
               VELUNITS = 'KM/S',tbase=tbase
 
